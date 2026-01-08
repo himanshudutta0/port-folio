@@ -3,9 +3,114 @@ import streamlit as st
 # Page Config
 st.set_page_config(page_title="Himanshu Dutta | Profilo", layout="wide")
 
+# Custom CSS for animations and interactivity
 st.markdown("""
-    <div style="margin: 40px 0; text-align: center;">
-        <h1 style="color: #4CAF50; margin-bottom: 0.2em;">HIMANSHU DUTTA</h1>
+    <style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    .animated-header {
+        animation: fadeIn 1s ease-out;
+    }
+
+    .hover-lift {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+    }
+
+    .skill-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        margin: 5px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .skill-badge:hover {
+        transform: scale(1.1) rotate(2deg);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .project-card {
+        background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+        border-left: 4px solid #4CAF50;
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+        background: linear-gradient(135deg, #667eea44 0%, #764ba244 100%);
+        transform: translateX(10px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .floating {
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .section-title {
+        position: relative;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #4CAF50, #667eea);
+        transition: width 0.3s ease;
+    }
+
+    .section-title:hover::after {
+        width: 120px;
+    }
+
+    .interactive-stat {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .interactive-stat:hover {
+        transform: scale(1.05) rotate(-2deg);
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <div style="margin: 40px 0; text-align: center;" class="animated-header">
+        <h1 style="color: #4CAF50; margin-bottom: 0.2em;" class="floating">HIMANSHU DUTTA</h1>
         <h3 style="margin-top: 0; color: #333;">
             AI Engineer (NLP + GenAI) &nbsp; | &nbsp; Business Strategy-Oriented &nbsp; | &nbsp; IBM Data Science Certified
         </h3>
@@ -14,7 +119,7 @@ st.markdown("""
             📧 <a href="mailto:dutthimsun@gmail.com" style="color: #4CAF50; text-decoration: none;">dutthimsun@gmail.com</a> &nbsp; | &nbsp;
             <a href="https://www.linkedin.com/in/himanshu-dutta06" target="_blank" style="color: #4CAF50; text-decoration: none;">🔗 LinkedIn</a>
         </p>
-        <p style="font-size: 24px; font-weight: bold; text-align: center; margin-bottom: 0; color: #444;">ॐ</p>
+        <p style="font-size: 24px; font-weight: bold; text-align: center; margin-bottom: 0; color: #444;" class="floating">ॐ</p>
         <p style="font-size: 16px; font-style: italic; color: #666; text-align: center; margin-top: 0.2em;">
             कृष्णाय वासुदेवाय हरये परमात्मने ।<br>
             प्रणतः क्लेशनाशाय गोविन्दाय नमो नमः ॥
@@ -22,7 +127,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Resume Download
+# Resume Download with hover effect
 with open("assets/Himanshu_Dutta_Resume.pdf", "rb") as f:
     resume_data = f.read()
 
@@ -33,26 +138,22 @@ st.download_button(
     mime="application/pdf"
 )
 
-# Sidebar Navigation
+# Sidebar Navigation with emojis
 st.sidebar.title("📄 Navigation")
-section = st.sidebar.radio("Go to", ["Summary", "Education", "Skills", "Professional Experience", "Projects", "Certifications & Workshops", "Achievements",
-                                     "Interests", "Life Beyond Work"])
+section = st.sidebar.radio("Go to", ["🏠 Summary", "🎓 Education", "🧠 Skills", "💼 Professional Experience",
+                                     "🚀 Projects", "📜 Certifications & Workshops", "🏅 Achievements",
+                                     "🎯 Interests", "🌄 Life Beyond Work"])
 
 # Sections
 import base64
 
-def get_base64_image(image_path):
-    with open(image_path, "rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-
-import base64
 
 def get_base64_image_from_path(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-if section == "Summary":
+
+if section == "🏠 Summary":
     img_path = "assets/himanshu.jpg"
     bg_img = get_base64_image_from_path(img_path)
 
@@ -71,6 +172,12 @@ if section == "Summary":
                 box-shadow: 0 10px 30px rgba(0,0,0,0.4);
                 filter: brightness(0.75);
                 backdrop-filter: blur(5px);
+                transition: all 0.3s ease;
+            }}
+
+            .summary-section:hover {{
+                transform: scale(1.02);
+                box-shadow: 0 15px 40px rgba(76, 175, 80, 0.3);
             }}
 
             .summary-overlay {{
@@ -85,6 +192,16 @@ if section == "Summary":
 
             .summary-overlay ul {{
                 padding-left: 24px;
+            }}
+
+            .summary-overlay li {{
+                margin: 10px 0;
+                transition: all 0.3s ease;
+            }}
+
+            .summary-overlay li:hover {{
+                transform: translateX(10px);
+                color: #4CAF50;
             }}
 
             .summary-section::before {{
@@ -120,234 +237,264 @@ if section == "Summary":
         </div>
     """, unsafe_allow_html=True)
 
-elif section == "Education":
-    st.subheader("🎓 Education")
+elif section == "🎓 Education":
+    st.markdown("<h2 class='section-title'>🎓 Education</h2>", unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown("<div class='interactive-stat'><h3>2023-2027</h3><p>B.Tech Journey</p></div>",
+                    unsafe_allow_html=True)
+    with col2:
+        st.markdown("<div class='interactive-stat'><h3>IIIT Kottayam</h3><p>Premier Institute</p></div>",
+                    unsafe_allow_html=True)
+    with col3:
+        st.markdown("<div class='interactive-stat'><h3>ECE</h3><p>Electronics & Comm</p></div>", unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("""
-    **B.Tech in Electronics and Communication Engineering**  
-    *Indian Institute of Information Technology (IIIT), Kottayam*  
-    Aug 2023 – May 2027  
+    <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 25px; border-radius: 15px; margin: 20px 0;">
+    <h3>📚 Academic Focus</h3>
 
-    - CGPA: *[To be updated]*  
-    - Mathematics : Discrete Mathematics, Calculus and Linear Algebra, Probability & Statistics, Differential Equations
-    - Programming: C, C++, Data Structures And Algorithms  
-    - Electronics: Control System, Analog and Digital Electronics
-    - Communication: Signal and System, Digital Communication, Electromagnetic Theory
-    - Business: Economics, Management
-    - Academic Interests: Natural Language Processing, AI Systems, IOT, Robotics, Reinforcement Learning   
-    """)
-
-
-elif section == "Skills":
-    st.subheader("🧠 Technical Skills")
-
-    st.markdown("**🧑‍💻 Programming & Tools**: Python, C, SQL, Git, Jupyter, VS Code, Streamlit, Bash")
-    st.markdown("**🗣️ NLP & Language Understanding**: Hugging Face Transformers, spaCy, NLTK, VADER, LangChain")
-    st.markdown("**📄 Document & QA Pipelines**: RAG, LangChain, FAISS, ChromaDB, PyMuPDF")
-    st.markdown("**📊 Modeling & ML Frameworks**: NMF, LDA, TextRank, CNN, PyTorch, Scikit-learn")
-    st.markdown("**🎙️ Speech & Audio**: pyttsx3, Librosa")
-    st.markdown("**🚀 Deployment**: Streamlit Cloud")
-    st.markdown("**📈 Visualization**: Matplotlib, Seaborn, Plotly, Pandas")
-
-    st.markdown("---")
-    st.subheader("💬 Soft Skills *(in progress)*")
-    st.markdown("• Communication  \n• Teamwork & Collaboration  \n• Adaptability  \n• Problem Solving  \n• Time Management")
-
-    st.subheader("📊 Business & Management Skills *(developing)*")
-    st.markdown("• Business Analysis  \n• Product Thinking  \n• Data-Driven Decision Making  \n• Project Management Basics")
-
-elif section == "Professional Experience":
-    st.subheader("Professional Experience")
-
-
-    st.markdown("---")  # horizontal divider
-
-
-
-elif section == "Projects":
-    st.subheader("🚀 Projects")
-
-    # project 1
-    with st.expander("🧬 Swastha – AI-Powered Lifestyle Recommendation System", expanded=False):
-        st.markdown("""
-        A personalized health and wellness advisory system that provides lifestyle recommendations using biometric and behavioral data.
-
-        🔸 **Use Case**: Helps individuals make better daily health decisions based on sleep, hydration, fitness, stress, and nutrition levels.  
-        🔸 **Business Value**: Applicable for fitness apps, wellness dashboards, and preventive healthcare platforms focused on personalized user engagement.  
-        🔸 **Approach**: Built a modular ML pipeline using Random Forest on synthetic wellbeing data. Engineered key features and heuristics to generate priority-based 
-           health suggestions (e.g., hydration, sleep). Deployed via a real-time Streamlit app with dynamic feedback and wellbeing scoring.  
-        **Tech Stack**: Python, NumPy, Pandas, Scikit-learn (Random Forest), Joblib, Streamlit, Modular ML Pipeline Design.
-
-        🔗 **Demo Video**: [Watch on YouTube](https://m.youtube.com/watch?v=e7Vpl-sHtsU)  
-        🗂 **GitHub Repo**: [View on GitHub](https://github.com/himanshudutta0/swastha-health-app)
-        """)
-
-    # project 2
-    with st.expander("🎶 TuneDNA – Music Genre Classification using Deep Learning"):
-        st.markdown("""
-        A deep learning system that classifies audio tracks into music genres based on sound patterns.
-
-        🔸 **Use Case**: Helps streaming platforms, independent musicians, and music apps to auto-tag and organize vast music libraries.  
-        🔸 **Business Value**: Automates metadata tagging for better music discovery, personalization, and recommendation systems.  
-        🔸 **Approach**: Converted audio into Mel Spectrograms and trained a CNN model to detect genre patterns.  
-        🔸 **Outcome**: Achieved high-accuracy predictions with real-time genre identification via a Streamlit interface.
-
-        **Tech Stack**: TensorFlow, Librosa, NumPy, Matplotlib, Streamlit; CNNs, Audio & Signal Processing, TensorFlow Image API, Model Optimization.
-
-        🔗 [📺 Watch Demo on YouTube](https://m.youtube.com/watch?v=Q9VjfXhQdYA)  
-        🔗 [📁 Access Project Files on Google Drive](https://drive.google.com/drive/u/0/mobile/folders/1Bha3zjPXOAKpYKgJAQul7yzfqGJgyw2N)
-        """)
-
-    # project 3
-    with st.expander("📰 NewsGuard – AI-Powered News Assistant"):
-        st.markdown("""
-        A real-time NLP pipeline that scrapes, analyzes, and visualizes news articles through a dynamic dashboard.
-
-        🔸 **Use Case**: Assists readers, researchers, and journalists in identifying bias, understanding topics, and consuming concise news.  
-        🔸 **Business Value**: Supports media houses, PR firms, and analysts in real-time trend monitoring, reputation tracking, and content verification.  
-        🔸 **Approach**: 
-        - Automated scraping from news sources in real-time  
-        - Bias detection through sentiment scoring  
-        - NMF for topic modeling and TextRank for summarization  
-        🔸 **Interface**: A timeline-based dashboard with filters, summaries, and named entities.
-
-        **Tech Stack**: Python, Hugging Face Transformers, spaCy, NLTK, TextBlob, VADER, Pandas, Regex, JSON, LDA, 
-                        newspaper3k, feedparser, BeautifulSoup, Streamlit, Matplotlib, Plotly.
-
-        🔗 [GitHub Repository](https://github.com/himanshudutta0/newsguard-ai-news-assistant)  
-        🔗 [Project Drive Folder](https://drive.google.com/drive/u/0/mobile/folders/17P59AUh_Z4PYwKYkFg9V9Y8xJ3iWDrBc)  
-        🔗 [Live Demo](https://himanshudutta-newsguard-ai-news-assistant-hdngaina.streamlit.app/)
-        """)
-
-    # project 4
-    with st.expander("📄 DocMind – AI-Powered Offline PDF Q&A App"):
-        st.markdown("""
-        **DocMind** is a smart, offline-capable AI assistant that allows users to upload PDF documents and ask natural language questions over them.  
-        Powered by LLaMA 2 7B, the app performs semantic search and local inference to deliver fast, private, and cloud-free answers.
-
-        🔸 **Key Features**:  
-        - PDF upload, parsing, and intelligent chunking  
-        - Embedding generation using `all-MiniLM-L6-v2`  
-        - Vector store built with ChromaDB  
-        - Local LLM inference via Hugging Face/Ollama (completely offline)  
-        - Clean, modular Streamlit-based interface  
-
-        🔸 **Business Value**:  
-        - Empowers researchers, legal professionals, and corporate users to extract insights from documents without exposing sensitive data  
-        - Eliminates cloud API costs and latency with full local processing  
-        - Ideal for enterprise document review, offline reading, and compliance-sensitive environments  
-
-        🔸 **Interface**:  
-        - Intuitive Streamlit dashboard with drag-and-drop PDF upload  
-        - Text input for natural language questions  
-        - Real-time answers, highlighted context chunks, and document preview  
-
-        **Tech Stack**: Python, LangChain, LLaMA 2 (HuggingFace/Ollama), Sentence Transformers, ChromaDB, Streamlit, PyPDF/PyMuPDF
-
-        **Skills**: NLP, Hugging Face Transformers, LangChain, Vector Search, ChromaDB, Streamlit, Sentence Transformers, Question Answering Systems
-
-        🔗 [Project Drive Folder](https://drive.google.com/drive/u/0/mobile/folders/1nOWGwDqGkZoihoLsM2Vx8gZZZoaAsMoP)
-        """)
-
-    # project 5
-    # Project 4 (Updated)
-    with st.expander("📄 DocuMind.ai – Domain-Specific AI Assistant Suite for Document Intelligence"):
-        st.markdown("""
-        **DocuMind.ai** (v2.0 of DocuMind)
-
-        A multi-domain AI-powered document assistant designed for modern professionals. DocuMind.ai provides intelligent support across healthcare, legal, finance, and business domains. Built with advanced **Retrieval-Augmented Generation (RAG)**, fine-tuned language models, and agentic workflows via **LangGraph**, it understands, analyzes, and simplifies complex documents with precision and speed.
-
-        🔸 **Tools & Modules**:
-
-        - **MedMind.AI** (available now) – Your intelligent medical assistant powered by RAG, capable of answering complex health-related questions instantly and accurately.  
-        - **CourtMind.AI** – An agentic legal research companion that analyzes court judgments, extracts insights, and supports case law interpretation, optimized for the Indian judiciary system.  
-        - **LawMind.AI** – Smart assistant for reviewing, drafting, and explaining legal contracts, notices, and compliance documents using fine-tuned legal language models.  
-        - **FinMind.AI** – Financial AI assistant to decode stock trends, analyze financial news, and interpret company reports via RAG-based pipelines.  
-        - **BizMind.AI** – AI assistant for startups and businesses offering guidance on GST, company registration, compliance processes, and government schemes.  
-        - **TaxMind.AI** – Fine-tuned assistant simplifying Indian income tax, covering deductions, planning, filings, and compliance tracking.  
-        - **DocuTranslate.AI** – Translate legal, medical, and official documents into Indian regional languages with high accuracy and domain-sensitive handling.  
-        - **WriteMind.AI** – Document refinement assistant that summarizes, corrects, and enhances writing across any domain using advanced AI writing tools.
-
-        🔸 **Skills & Tech Stack**:  
-        Artificial Intelligence (AI), Large Language Models (LLM), Streamlit, Retrieval-Augmented Generation (RAG), ChromaDB, LangGraph, Hugging Face Transformers, Sentence Transformers, Domain-Specific AI, Medical AI, FinTech AI.
-
-        🔗 [Project Drive Folder](https://drive.google.com/drive/folders/12D_cz2Nk2ws-Amv9sx64UfX1kmo4JKjS)
-        """)
-
-
-elif section == "Certifications & Workshops":
-    st.subheader("🎓 Certifications & Workshops")
-
-    # IBM Certificate with clickable link
-    st.markdown("""
-    **IBM Data Science Specialization** – Coursera  
-    [📜 View Certificate](https://www.coursera.org/account/accomplishments/specialization/W5EATQW69VBF)
+    **Mathematics**: Discrete Mathematics, Calculus and Linear Algebra, Probability & Statistics, Differential Equations<br>
+    **Programming**: C, C++, Data Structures And Algorithms<br>
+    **Electronics**: Control System, Analog and Digital Electronics<br>
+    **Communication**: Signal and System, Digital Communication, Electromagnetic Theory<br>
+    **Business**: Economics, Management<br>
+    **Academic Interests**: Natural Language Processing, AI Systems, IOT, Robotics, Reinforcement Learning
+    </div>
     """, unsafe_allow_html=True)
 
-    # Display certificate image with updated parameter
+elif section == "🧠 Skills":
+    st.markdown("<h2 class='section-title'>🧠 Technical Skills</h2>", unsafe_allow_html=True)
+
+    skills_categories = {
+        "🧑‍💻 Programming & Tools": ["Python", "C", "SQL", "Git", "Jupyter", "VS Code", "Streamlit", "Bash"],
+        "🗣️ NLP & Language": ["Hugging Face", "spaCy", "NLTK", "VADER", "LangChain"],
+        "📄 Document & QA": ["RAG", "LangChain", "FAISS", "ChromaDB", "PyMuPDF"],
+        "📊 Modeling & ML": ["NMF", "LDA", "TextRank", "CNN", "PyTorch", "Scikit-learn"],
+        "🎙️ Speech & Audio": ["pyttsx3", "Librosa"],
+        "📈 Visualization": ["Matplotlib", "Seaborn", "Plotly", "Pandas"]
+    }
+
+    for category, skills in skills_categories.items():
+        st.markdown(f"<h4>{category}</h4>", unsafe_allow_html=True)
+        skills_html = "".join([f"<span class='skill-badge'>{skill}</span>" for skill in skills])
+        st.markdown(f"<div style='margin-bottom: 20px;'>{skills_html}</div>", unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        <div class="hover-lift" style="background: linear-gradient(135deg, #f093fb22 0%, #f5576c22 100%); padding: 20px; border-radius: 15px;">
+        <h3>💬 Soft Skills <em>(in progress)</em></h3>
+        • Communication<br>
+        • Teamwork & Collaboration<br>
+        • Adaptability<br>
+        • Problem Solving<br>
+        • Time Management
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 20px; border-radius: 15px;">
+        <h3>📊 Business Skills <em>(developing)</em></h3>
+        • Business Analysis<br>
+        • Product Thinking<br>
+        • Data-Driven Decision Making<br>
+        • Project Management Basics
+        </div>
+        """, unsafe_allow_html=True)
+
+elif section == "💼 Professional Experience":
+    st.markdown("<h2 class='section-title'>💼 Professional Experience</h2>", unsafe_allow_html=True)
+    st.info("🚀 Currently building experience through cutting-edge projects and continuous learning!")
+
+elif section == "🚀 Projects":
+    st.markdown("<h2 class='section-title'>🚀 Projects</h2>", unsafe_allow_html=True)
+
+    # Project 1
+    with st.expander("🧬 Swastha – AI-Powered Lifestyle Recommendation System", expanded=False):
+        st.markdown("""
+        <div class='project-card'>
+        A personalized health and wellness advisory system that provides lifestyle recommendations using biometric and behavioral data.
+
+        🔸 <b>Use Case</b>: Helps individuals make better daily health decisions based on sleep, hydration, fitness, stress, and nutrition levels.<br><br>
+        🔸 <b>Business Value</b>: Applicable for fitness apps, wellness dashboards, and preventive healthcare platforms focused on personalized user engagement.<br><br>
+        🔸 <b>Approach</b>: Built a modular ML pipeline using Random Forest on synthetic wellbeing data. Engineered key features and heuristics to generate priority-based 
+           health suggestions (e.g., hydration, sleep). Deployed via a real-time Streamlit app with dynamic feedback and wellbeing scoring.<br><br>
+        <b>Tech Stack</b>: Python, NumPy, Pandas, Scikit-learn (Random Forest), Joblib, Streamlit, Modular ML Pipeline Design.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("**🔗 Links:**")
+        st.markdown("- [📺 Watch Demo on YouTube](https://m.youtube.com/watch?v=e7Vpl-sHtsU)")
+        st.markdown("- [📁 View GitHub Repository](https://github.com/himanshudutta0/swastha-health-app)")
+
+    # Project 2
+    with st.expander("🎶 TuneDNA – Music Genre Classification using Deep Learning", expanded=False):
+        st.markdown("""
+        <div class='project-card'>
+        A deep learning system that classifies audio tracks into music genres based on sound patterns.
+
+        🔸 <b>Use Case</b>: Helps streaming platforms, independent musicians, and music apps to auto-tag and organize vast music libraries.<br><br>
+        🔸 <b>Business Value</b>: Automates metadata tagging for better music discovery, personalization, and recommendation systems.<br><br>
+        🔸 <b>Approach</b>: Converted audio into Mel Spectrograms and trained a CNN model to detect genre patterns.<br><br>
+        🔸 <b>Outcome</b>: Achieved high-accuracy predictions with real-time genre identification via a Streamlit interface.<br><br>
+        <b>Tech Stack</b>: TensorFlow, Librosa, NumPy, Matplotlib, Streamlit; CNNs, Audio & Signal Processing, TensorFlow Image API, Model Optimization.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("**🔗 Links:**")
+        st.markdown("- [📺 Watch Demo on YouTube](https://m.youtube.com/watch?v=Q9VjfXhQdYA)")
+        st.markdown(
+            "- [📁 Access Project Files on Google Drive](https://drive.google.com/drive/u/0/mobile/folders/1Bha3zjPXOAKpYKgJAQul7yzfqGJgyw2N)")
+
+    # Project 3
+    with st.expander("📰 NewsGuard – AI-Powered News Assistant", expanded=False):
+        st.markdown("""
+        <div class='project-card'>
+        A real-time NLP pipeline that scrapes, analyzes, and visualizes news articles through a dynamic dashboard.
+
+        🔸 <b>Use Case</b>: Assists readers, researchers, and journalists in identifying bias, understanding topics, and consuming concise news.<br><br>
+        🔸 <b>Business Value</b>: Supports media houses, PR firms, and analysts in real-time trend monitoring, reputation tracking, and content verification.<br><br>
+        🔸 <b>Approach</b>:<br>
+        - Automated scraping from news sources in real-time<br>
+        - Bias detection through sentiment scoring<br>
+        - NMF for topic modeling and TextRank for summarization<br><br>
+        🔸 <b>Interface</b>: A timeline-based dashboard with filters, summaries, and named entities.<br><br>
+        <b>Tech Stack</b>: Python, Hugging Face Transformers, spaCy, NLTK, TextBlob, VADER, Pandas, Regex, JSON, LDA, 
+                        newspaper3k, feedparser, BeautifulSoup, Streamlit, Matplotlib, Plotly.
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("**🔗 Links:**")
+        st.markdown("- [📁 GitHub Repository](https://github.com/himanshudutta0/newsguard-ai-news-assistant)")
+        st.markdown(
+            "- [📁 Project Drive Folder](https://drive.google.com/drive/u/0/mobile/folders/17P59AUh_Z4PYwKYkFg9V9Y8xJ3iWDrBc)")
+        st.markdown("- [🌐 Live Demo](https://himanshudutta-newsguard-ai-news-assistant-hdngaina.streamlit.app/)")
+
+    # Project 4
+    with st.expander("📄 DocMind – AI-Powered Offline PDF Q&A App", expanded=False):
+        st.markdown("""
+        <div class='project-card'>
+        <b>DocMind</b> is a smart, offline-capable AI assistant that allows users to upload PDF documents and ask natural language questions over them.  
+        Powered by LLaMA 2 7B, the app performs semantic search and local inference to deliver fast, private, and cloud-free answers.
+
+        🔸 <b>Key Features</b>:<br>
+        - PDF upload, parsing, and intelligent chunking<br>
+        - Embedding generation using all-MiniLM-L6-v2<br>
+        - Vector store built with ChromaDB<br>
+        - Local LLM inference via Hugging Face/Ollama (completely offline)<br>
+        - Clean, modular Streamlit-based interface<br><br>
+
+        🔸 <b>Business Value</b>:<br>
+        - Empowers researchers, legal professionals, and corporate users to extract insights from documents without exposing sensitive data<br>
+        - Eliminates cloud API costs and latency with full local processing<br>
+        - Ideal for enterprise document review, offline reading, and compliance-sensitive environments<br><br>
+
+        <b>Tech Stack</b>: Python, LangChain, LLaMA 2 (HuggingFace/Ollama), Sentence Transformers, ChromaDB, Streamlit, PyPDF/PyMuPDF
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("**🔗 Links:**")
+        st.markdown(
+            "- [📁 Project Drive Folder](https://drive.google.com/drive/u/0/mobile/folders/1nOWGwDqGkZoihoLsM2Vx8gZZZoaAsMoP)")
+
+    # Project 5
+    with st.expander("📄 DocuMind.ai – Domain-Specific AI Assistant Suite", expanded=False):
+        st.markdown("""
+        <div class='project-card'>
+        <b>DocuMind.ai</b> (v2.0 of DocuMind)
+
+        A multi-domain AI-powered document assistant designed for modern professionals. DocuMind.ai provides intelligent support across healthcare, legal, finance, and business domains.
+
+        🔸 <b>Tools & Modules</b>:<br><br>
+
+        - <b>MedMind.AI</b> – Your intelligent medical assistant powered by RAG<br>
+        - <b>CourtMind.AI</b> – Agentic legal research companion for Indian judiciary<br>
+        - <b>LawMind.AI</b> – Smart assistant for legal contracts and compliance<br>
+        - <b>FinMind.AI</b> – Financial AI assistant for stock trends and reports<br>
+        - <b>BizMind.AI</b> – AI assistant for startups and business compliance<br>
+        - <b>TaxMind.AI</b> – Simplifying Indian income tax planning<br>
+        - <b>DocuTranslate.AI</b> – Document translation to Indian languages<br>
+        - <b>WriteMind.AI</b> – Document refinement and enhancement<br><br>
+
+        <b>Tech Stack</b>: AI, LLM, Streamlit, RAG, ChromaDB, LangGraph, Hugging Face Transformers
+        </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("**🔗 Links:**")
+        st.markdown(
+            "- [📁 Project Drive Folder](https://drive.google.com/drive/folders/12D_cz2Nk2ws-Amv9sx64UfX1kmo4JKjS)")
+
+elif section == "📜 Certifications & Workshops":
+    st.markdown("<h2 class='section-title'>📜 Certifications & Workshops</h2>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 25px; border-radius: 15px; margin: 20px 0;">
+    <h3>IBM Data Science Specialization – Coursera</h3>
+    <a href="https://www.coursera.org/account/accomplishments/specialization/W5EATQW69VBF" target="_blank">📜 View Certificate</a>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.image("assets/cert_ibm_datasci.png", caption="IBM Certificate Preview", width=500)
 
-    # Workshops section
+    st.markdown("---")
+    st.markdown("### 🛠 Workshops Attended")
+
+    workshops = [
+        ("🧠 Responsible Natural Language Processing Workshop", "assets/nlp.jpeg", "5-day FDP on RNLP by IIIT Kottayam"),
+        ("🚁 Advanced Computer Vision Workshop", "assets/computer_vision.jpeg",
+         "One-week FDP on CV for Image, Video, and Applications"),
+        ("🧠 RISC-V (VEGA Microprocessor) Workshop", "assets/vega_workshop_certificate.jpg",
+         "Open-source microprocessor design with VEGA chips"),
+        ("🚁 Drone Technology Workshop", "assets/drone_workshop_certificate.jpg",
+         "UAV design, flight mechanics, and automation")
+    ]
+
+    for title, img, desc in workshops:
+        with st.expander(title):
+            st.markdown(f"<p>{desc}</p>", unsafe_allow_html=True)
+            st.image(img, width=500)
+
+elif section == "🏅 Achievements":
+    st.markdown("<h2 class='section-title'>🏅 Achievements</h2>", unsafe_allow_html=True)
+
     st.markdown("""
-    ---
-    **🛠 Workshops Attended**
-    """)
+    <div class="hover-lift" style="background: linear-gradient(135deg, #f093fb22 0%, #f5576c22 100%); padding: 25px; border-radius: 15px; margin: 20px 0;">
+    <h3>🏆 Smart India Hackathon (SIH) 2025 – Finalist</h3>
+    <p>Selected among the top teams nationwide after multiple evaluation rounds, demonstrating strong problem-solving, innovation, and technical execution.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
+    with st.expander("📄 View Certificate"):
+        st.image("assets/SIH_2025_Certificate.png", width=450)
 
+elif section == "🎯 Interests":
+    st.markdown("<h2 class='section-title'>🎯 Interests</h2>", unsafe_allow_html=True)
 
-    # Workshop 1
-    st.markdown("""
-    ---
-    ### 🧠 **Responsible Natural Language Processing Workshop**
-    Proud to have participated in the 5-day Online Faculty Development Programme on Responsible Natural Language Processing (RNLP) by IIIT Kottayam, enhancing my skills in AI and NLP.
-    """)
-    st.image("assets/nlp.jpeg", caption="Responsible Natural Language Processing WORKSHOP", width=500)
+    interests = [
+        ("📚", "Sanskrit & Linguistics", "Exploring classical language structures and their potential in NLP"),
+        ("🧘", "Yoga & Meditation", "Practicing for mental clarity, discipline, and daily balance"),
+        ("🎵", "Music & Dance", "Flute performance, enhancing creativity and emotional intelligence"),
+        ("🏸", "Badminton", "Staying physically active while enjoying strategic gameplay"),
+        ("🌍", "Travel & Culture", "Exploring diverse places, people, and perspectives")
+    ]
 
-    # Workshop 2
-    st.markdown("""
-    ---
-    ### 🚁 **Advanced Computer Vision Workshop**
-    Successfully completed a one-week FDP-cum-Workshop on Advanced Computer Vision for Image, Video, and Applications organized by IIIT Kottayam.
-    """)
-    st.image("assets/computer_vision.jpeg", caption="Advanced Computer Vision WORKSHOP", width=500)
+    for emoji, title, desc in interests:
+        st.markdown(f"""
+        <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 20px; border-radius: 15px; margin: 15px 0;">
+        <h3>{emoji} {title}</h3>
+        <p>{desc}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    # Workshop 3
-    st.markdown("""
-    ---
-    ### 🧠 **RISC-V (VEGA Microprocessor) Workshop**
-    Gained exposure to open-source microprocessor design, low-level programming, and hardware-software co-design using India's indigenous **VEGA** chips.
-    """)
-    st.image("assets/vega_workshop_certificate.jpg", caption="VEGA PROCESSOR WORKSHOP", width=500)
+elif section == "🌄 Life Beyond Work":
+    st.markdown("<h2 class='section-title'>🌄 Life Beyond Work</h2>", unsafe_allow_html=True)
+    st.markdown("### A visual glimpse into the places that inspire me and refresh my perspective:")
 
-    # Workshop 4
-    st.markdown("""
-    ---
-    ### 🚁 **Drone Technology Workshop**
-    Explored the principles of UAV design, flight mechanics, and real-time applications in automation.
-    """)
-    st.image("assets/drone_workshop_certificate.jpg", caption="DRONE WORKSHOP", width=500)
-
-
-elif section == "Achievements":
-    st.subheader("🏅 Achievements")
-    st.markdown(""" 
-    """)
-
-
-elif section == "Interests":
-    st.subheader("🎯 Interests")
-    st.markdown("""
-    - 📚 **Sanskrit & Linguistics** – Exploring classical language structures and their potential in NLP  
-    - 🧘 **Yoga & Meditation** – Practicing for mental clarity, discipline, and daily balance  
-    - 🎵 **Flute Performance & Music Appreciation** – Enhancing creativity, emotional intelligence, and rhythm  
-    - 🏸 **Badminton** – Staying physically active while enjoying strategic gameplay  
-    - 🌍 **Travel & Culture** – Exploring diverse places, people, and perspectives  
-    """)
-
-elif section == "Life Beyond Work":
-    st.subheader("🌄 Life Beyond Work")
-    st.markdown("A visual glimpse into the places that inspire me and refresh my perspective:")
-
-    # First row of 3 images
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -357,60 +504,39 @@ elif section == "Life Beyond Work":
         st.image("images/adiyogi_shiva_statue.jpg", caption="ADIYOGI SHIVA STATUE", use_container_width=True)
 
     with col3:
-        st.image("images/mayurasana.jpg", caption="PERFORMING MAYURASANA ON MOUNTAIN IN JEHANABAD, BIHAR",
-                 use_container_width=True)
+        st.image("images/mayurasana.jpg", caption="PERFORMING MAYURASANA ON MOUNTAIN", use_container_width=True)
+
+    st.markdown("---")
 
     col4, col5, col6 = st.columns(3)
 
     with col4:
-        st.image(
-            "images/cow_love.jpeg",
-            caption="A quiet bond — not for attention, not to impress. Just a breath of peace shared between two beings.",
-            use_container_width=True
-        )
+        st.image("images/cow_love.jpeg", caption="A quiet bond — peace shared between beings", use_container_width=True)
     with col5:
-        st.image(
-            "images/bird.jpeg",
-            use_container_width=True
-        )
+        st.image("images/bird.jpeg", use_container_width=True)
     with col6:
-        st.image(
-            "images/bird_in_hand.jpeg",
-            use_container_width=True
-        )
+        st.image("images/bird_in_hand.jpeg", use_container_width=True)
 
-    st.markdown("Nature, birds, and animals don’t chase deadlines. They simply live. A gentle reminder to pause, observe, and find balance.")
-    # First row of 3 images
-    # First row
-    col1, col2, col3 = st.columns(3)
+    st.markdown("""
+    <div style="text-align: center; font-style: italic; margin: 20px 0; color: #666;">
+    Nature, birds, and animals don't chase deadlines. They simply live. A gentle reminder to pause, observe, and find balance.
+    </div>
+    """, unsafe_allow_html=True)
 
-    with col1:
-        st.image("images/1.jpeg", use_container_width=True)
-    with col2:
-        st.image("images/2.jpeg", use_container_width=True)
-    with col3:
-        st.image("images/3.jpeg", use_container_width=True)
+    st.markdown("---")
 
-    # Second row
-    col4, col5, col6 = st.columns(3)
-
-    with col4:
-        st.image("images/4.jpeg", use_container_width=True)
-    with col5:
-        st.image("images/5.jpeg", use_container_width=True)
-    with col6:
-        st.image("images/6.jpeg", use_container_width=True)
-
-    # Third row
-    col7, col8, col9 = st.columns(3)
-
-    with col7:
-        st.image("images/7.jpeg", use_container_width=True)
-    with col8:
-        st.image("images/8.jpeg", use_container_width=True)
-    with col9:
-        st.image("images/9.jpeg", use_container_width=True)
+    for i in range(3):
+        cols = st.columns(3)
+        for j, col in enumerate(cols):
+            img_num = i * 3 + j + 1
+            with col:
+                st.image(f"images/{img_num}.jpeg", use_container_width=True)
 
 # Footer
 st.markdown("---")
-st.markdown("<div style='text-align: center;'>Made with ❤️ by Himanshu Dutta</div>", unsafe_allow_html=True)
+st.markdown("""
+<div style='text-align: center; padding: 20px;'>
+    <p style='font-size: 18px; color: #4CAF50;'>Made with ❤️ by Himanshu Dutta</p>
+    <p style='font-size: 14px; color: #666;'>✨ Building meaningful technology, one project at a time</p>
+</div>
+""", unsafe_allow_html=True)
