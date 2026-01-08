@@ -3,7 +3,7 @@ import streamlit as st
 # Page Config
 st.set_page_config(page_title="Himanshu Dutta | Profilo", layout="wide")
 
-# Custom CSS for animations and interactivity
+# Custom CSS for animations, interactivity, and mobile responsiveness
 st.markdown("""
     <style>
     @keyframes fadeIn {
@@ -37,13 +37,14 @@ st.markdown("""
 
     .skill-badge {
         display: inline-block;
-        padding: 8px 16px;
-        margin: 5px;
+        padding: 6px 12px;
+        margin: 4px;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border-radius: 20px;
         transition: all 0.3s ease;
         cursor: pointer;
+        font-size: 0.9em;
     }
 
     .skill-badge:hover {
@@ -54,7 +55,7 @@ st.markdown("""
     .project-card {
         background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
         border-left: 4px solid #4CAF50;
-        padding: 20px;
+        padding: 15px;
         margin: 10px 0;
         border-radius: 10px;
         transition: all 0.3s ease;
@@ -62,7 +63,7 @@ st.markdown("""
 
     .project-card:hover {
         background: linear-gradient(135deg, #667eea44 0%, #764ba244 100%);
-        transform: translateX(10px);
+        transform: translateX(5px);
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
 
@@ -94,16 +95,115 @@ st.markdown("""
     .interactive-stat {
         background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         color: white;
-        padding: 20px;
+        padding: 15px;
         border-radius: 15px;
         text-align: center;
         transition: all 0.3s ease;
         cursor: pointer;
+        margin: 10px 0;
     }
 
     .interactive-stat:hover {
         transform: scale(1.05) rotate(-2deg);
         box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+    }
+
+    /* Mobile Responsive Styles */
+    @media only screen and (max-width: 768px) {
+        .animated-header h1 {
+            font-size: 1.8em !important;
+        }
+        
+        .animated-header h3 {
+            font-size: 1em !important;
+            line-height: 1.4;
+        }
+        
+        .animated-header p {
+            font-size: 0.9em !important;
+        }
+        
+        .summary-section {
+            padding: 32px 16px !important;
+            border-radius: 25px !important;
+            margin: 0 10px 50px 10px !important;
+        }
+        
+        .summary-overlay {
+            padding: 20px !important;
+            font-size: 0.95em !important;
+        }
+        
+        .summary-overlay h2 {
+            font-size: 1.3em !important;
+        }
+        
+        .skill-badge {
+            padding: 5px 10px;
+            margin: 3px;
+            font-size: 0.85em;
+        }
+        
+        .project-card {
+            padding: 12px;
+            font-size: 0.9em;
+        }
+        
+        .interactive-stat {
+            padding: 12px;
+            margin: 8px 0;
+        }
+        
+        .interactive-stat h3 {
+            font-size: 1.2em;
+        }
+        
+        .hover-lift {
+            padding: 15px !important;
+            font-size: 0.9em;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+        }
+        
+        /* Disable hover transforms on mobile */
+        .hover-lift:hover {
+            transform: none;
+        }
+        
+        .project-card:hover {
+            transform: none;
+        }
+        
+        .interactive-stat:hover {
+            transform: none;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .animated-header h1 {
+            font-size: 1.5em !important;
+        }
+        
+        .animated-header h3 {
+            font-size: 0.9em !important;
+        }
+        
+        .summary-section {
+            padding: 24px 12px !important;
+            margin: 0 5px 40px 5px !important;
+        }
+        
+        .summary-overlay {
+            padding: 15px !important;
+            font-size: 0.9em !important;
+        }
+        
+        .skill-badge {
+            padding: 4px 8px;
+            font-size: 0.8em;
+        }
     }
     </style>
 """, unsafe_allow_html=True)
@@ -112,11 +212,11 @@ st.markdown("""
     <div style="margin: 40px 0; text-align: center;" class="animated-header">
         <h1 style="color: #4CAF50; margin-bottom: 0.2em;" class="floating">HIMANSHU DUTTA</h1>
         <h3 style="margin-top: 0; color: #333;">
-            AI Engineer (NLP + GenAI) &nbsp; | &nbsp; Business Strategy-Oriented &nbsp; | &nbsp; IBM Data Science Certified
+            AI Engineer (NLP + GenAI) | Business Strategy-Oriented | IBM Data Science Certified
         </h3>
         <p style="font-size: 18px; margin: 0.5em 0;">
-            📞 <a href="tel:+918409120774" style="color: #4CAF50; text-decoration: none;">+91 84091 20774</a> &nbsp; | &nbsp;
-            📧 <a href="mailto:dutthimsun@gmail.com" style="color: #4CAF50; text-decoration: none;">dutthimsun@gmail.com</a> &nbsp; | &nbsp;
+            📞 <a href="tel:+918409120774" style="color: #4CAF50; text-decoration: none;">+91 84091 20774</a><br>
+            📧 <a href="mailto:dutthimsun@gmail.com" style="color: #4CAF50; text-decoration: none;">dutthimsun@gmail.com</a><br>
             <a href="https://www.linkedin.com/in/himanshu-dutta06" target="_blank" style="color: #4CAF50; text-decoration: none;">🔗 LinkedIn</a>
         </p>
         <p style="font-size: 24px; font-weight: bold; text-align: center; margin-bottom: 0; color: #444;" class="floating">ॐ</p>
@@ -135,7 +235,8 @@ st.download_button(
     label="📄 Download Resume (PDF)",
     data=resume_data,
     file_name="Himanshu_Dutta_Resume.pdf",
-    mime="application/pdf"
+    mime="application/pdf",
+    use_container_width=True
 )
 
 # Sidebar Navigation with emojis
@@ -212,6 +313,16 @@ if section == "🏠 Summary":
                 backdrop-filter: blur(2.5px);
                 z-index: 0;
             }}
+            
+            @media only screen and (max-width: 768px) {{
+                .summary-overlay li:hover {{
+                    transform: none;
+                }}
+                
+                .summary-section:hover {{
+                    transform: none;
+                }}
+            }}
         </style>
 
         <div class="summary-section">
@@ -255,12 +366,12 @@ elif section == "🎓 Education":
     <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 25px; border-radius: 15px; margin: 20px 0;">
     <h3>📚 Academic Focus</h3>
 
-    **Mathematics**: Discrete Mathematics, Calculus and Linear Algebra, Probability & Statistics, Differential Equations<br>
-    **Programming**: C, C++, Data Structures And Algorithms<br>
-    **Electronics**: Control System, Analog and Digital Electronics<br>
-    **Communication**: Signal and System, Digital Communication, Electromagnetic Theory<br>
-    **Business**: Economics, Management<br>
-    **Academic Interests**: Natural Language Processing, AI Systems, IOT, Robotics, Reinforcement Learning
+    <strong>Mathematics</strong>: Discrete Mathematics, Calculus and Linear Algebra, Probability & Statistics, Differential Equations<br><br>
+    <strong>Programming</strong>: C, C++, Data Structures And Algorithms<br><br>
+    <strong>Electronics</strong>: Control System, Analog and Digital Electronics<br><br>
+    <strong>Communication</strong>: Signal and System, Digital Communication, Electromagnetic Theory<br><br>
+    <strong>Business</strong>: Economics, Management<br><br>
+    <strong>Academic Interests</strong>: Natural Language Processing, AI Systems, IOT, Robotics, Reinforcement Learning
     </div>
     """, unsafe_allow_html=True)
 
@@ -283,10 +394,10 @@ elif section == "🧠 Skills":
 
     st.markdown("---")
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([1, 1])
     with col1:
         st.markdown("""
-        <div class="hover-lift" style="background: linear-gradient(135deg, #f093fb22 0%, #f5576c22 100%); padding: 20px; border-radius: 15px;">
+        <div class="hover-lift" style="background: linear-gradient(135deg, #f093fb22 0%, #f5576c22 100%); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
         <h3>💬 Soft Skills </h3>
         • Communication<br>
         • Teamwork & Collaboration<br>
@@ -298,7 +409,7 @@ elif section == "🧠 Skills":
 
     with col2:
         st.markdown("""
-        <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 20px; border-radius: 15px;">
+        <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
         <h3>📊 Business Skills </h3>
         • Business Analysis<br>
         • Product Thinking<br>
@@ -439,7 +550,7 @@ elif section == "📜 Certifications & Workshops":
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("assets/cert_ibm_datasci.png", caption="IBM Certificate Preview", width=500)
+    st.image("assets/cert_ibm_datasci.png", caption="IBM Certificate Preview", use_container_width=True)
 
     st.markdown("---")
     st.markdown("### 🛠 Workshops Attended")
@@ -457,7 +568,7 @@ elif section == "📜 Certifications & Workshops":
     for title, img, desc in workshops:
         with st.expander(title):
             st.markdown(f"<p>{desc}</p>", unsafe_allow_html=True)
-            st.image(img, width=500)
+            st.image(img, use_container_width=True)
 
 elif section == "🏅 Achievements":
     st.markdown("<h2 class='section-title'>🏅 Achievements</h2>", unsafe_allow_html=True)
@@ -470,7 +581,7 @@ elif section == "🏅 Achievements":
     """, unsafe_allow_html=True)
 
     with st.expander("📄 View Certificate"):
-        st.image("assets/SIH_2025_Certificate.png", width=450)
+        st.image("assets/SIH_2025_Certificate.png", use_container_width=True)
 
 elif section == "🎯 Interests":
     st.markdown("<h2 class='section-title'>🎯 Interests</h2>", unsafe_allow_html=True)
