@@ -287,7 +287,7 @@ elif section == "🧠 Skills":
     with col1:
         st.markdown("""
         <div class="hover-lift" style="background: linear-gradient(135deg, #f093fb22 0%, #f5576c22 100%); padding: 20px; border-radius: 15px;">
-        <h3>💬 Soft Skills <em>(in progress)</em></h3>
+        <h3>💬 Soft Skills </h3>
         • Communication<br>
         • Teamwork & Collaboration<br>
         • Adaptability<br>
@@ -299,7 +299,7 @@ elif section == "🧠 Skills":
     with col2:
         st.markdown("""
         <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 20px; border-radius: 15px;">
-        <h3>📊 Business Skills <em>(developing)</em></h3>
+        <h3>📊 Business Skills </h3>
         • Business Analysis<br>
         • Product Thinking<br>
         • Data-Driven Decision Making<br>
