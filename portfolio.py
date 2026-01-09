@@ -3,6 +3,14 @@ import streamlit as st
 # Page Config
 st.set_page_config(page_title="Himanshu Dutta | Profilo", layout="wide")
 
+
+st.sidebar.title("⚙️ Viewing Mode")
+recruiter_mode = st.sidebar.toggle("👔 Recruiter Mode", value=True)
+
+def explorer_only(html):
+    if not recruiter_mode:
+        st.markdown(html, unsafe_allow_html=True)
+
 # Custom CSS for animations, interactivity, and mobile responsiveness
 st.markdown("""
     <style>
@@ -113,69 +121,69 @@ st.markdown("""
         .animated-header h1 {
             font-size: 1.8em !important;
         }
-        
+
         .animated-header h3 {
             font-size: 1em !important;
             line-height: 1.4;
         }
-        
+
         .animated-header p {
             font-size: 0.9em !important;
         }
-        
+
         .summary-section {
             padding: 32px 16px !important;
             border-radius: 25px !important;
             margin: 0 10px 50px 10px !important;
         }
-        
+
         .summary-overlay {
             padding: 20px !important;
             font-size: 0.95em !important;
         }
-        
+
         .summary-overlay h2 {
             font-size: 1.3em !important;
         }
-        
+
         .skill-badge {
             padding: 5px 10px;
             margin: 3px;
             font-size: 0.85em;
         }
-        
+
         .project-card {
             padding: 12px;
             font-size: 0.9em;
         }
-        
+
         .interactive-stat {
             padding: 12px;
             margin: 8px 0;
         }
-        
+
         .interactive-stat h3 {
             font-size: 1.2em;
         }
-        
+
         .hover-lift {
             padding: 15px !important;
             font-size: 0.9em;
         }
-        
+
         .section-title {
             font-size: 1.5em;
         }
-        
+
         /* Disable hover transforms on mobile */
         .hover-lift:hover {
             transform: none;
         }
-        
+
         .project-card:hover {
             transform: none;
         }
-        
+
         .interactive-stat:hover {
             transform: none;
         }
@@ -185,21 +193,21 @@ st.markdown("""
         .animated-header h1 {
             font-size: 1.5em !important;
         }
-        
+
         .animated-header h3 {
             font-size: 0.9em !important;
         }
-        
+
         .summary-section {
             padding: 24px 12px !important;
             margin: 0 5px 40px 5px !important;
         }
-        
+
         .summary-overlay {
             padding: 15px !important;
             font-size: 0.9em !important;
         }
-        
+
         .skill-badge {
             padding: 4px 8px;
             font-size: 0.8em;
@@ -236,14 +244,23 @@ st.download_button(
     data=resume_data,
     file_name="Himanshu_Dutta_Resume.pdf",
     mime="application/pdf",
-    use_container_width=True
+    width="stretch"
 )
 
 # Sidebar Navigation with emojis
-st.sidebar.title("📄 Navigation")
-section = st.sidebar.radio("Go to", ["🏠 Summary", "🎓 Education", "🧠 Skills", "💼 Professional Experience",
-                                     "🚀 Projects", "📜 Certifications & Workshops", "🏅 Achievements",
-                                     "🎯 Interests", "🌄 Life Beyond Work"])
+st.sidebar.title("📌 Navigation")
+section = st.sidebar.radio("Go to", [
+    "🏠 Summary",
+    "🎓 Education",
+    "🧠 Skills",
+    "💼 Professional Experience",
+    "🚀 Projects",
+    "🧩 Learnings & Engineering Judgment",
+    "📜 Certifications & Workshops",
+    "🏅 Achievements",
+    "🎯 Interests",
+    "🌄 Life Beyond Work"
+])
 
 # Sections
 import base64
@@ -313,12 +330,12 @@ if section == "🏠 Summary":
                 backdrop-filter: blur(2.5px);
                 z-index: 0;
             }}
-            
+
             @media only screen and (max-width: 768px) {{
                 .summary-overlay li:hover {{
                     transform: none;
                 }}
-                
+
                 .summary-section:hover {{
                     transform: none;
                 }}
@@ -376,45 +393,106 @@ elif section == "🎓 Education":
     """, unsafe_allow_html=True)
 
 elif section == "🧠 Skills":
-    st.markdown("<h2 class='section-title'>🧠 Technical Skills</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='section-title'>🧠 Skills & Competencies</h2>", unsafe_allow_html=True)
 
     skills_categories = {
-        "🧑‍💻 Programming & Tools": ["Python", "C", "SQL", "Git", "Jupyter", "VS Code", "Streamlit", "Bash"],
-        "🗣️ NLP & Language": ["Hugging Face", "spaCy", "NLTK", "VADER", "LangChain"],
-        "📄 Document & QA": ["RAG", "LangChain", "FAISS", "ChromaDB", "PyMuPDF"],
-        "📊 Modeling & ML": ["NMF", "LDA", "TextRank", "CNN", "PyTorch", "Scikit-learn"],
-        "🎙️ Speech & Audio": ["pyttsx3", "Librosa"],
-        "📈 Visualization": ["Matplotlib", "Seaborn", "Plotly", "Pandas"]
+        "🧑‍💻 Programming & Tools": [
+            "Python", "C", "SQL", "Git", "Bash",
+            "Jupyter", "VS Code", "Streamlit"
+        ],
+
+        "🗣️ NLP & Generative AI": [
+            "Hugging Face", "spaCy", "NLTK", "LangChain",
+            "Transformers", "Embeddings", "Prompt Engineering"
+        ],
+
+        "📄 Document Intelligence & RAG": [
+            "RAG Architectures", "FAISS", "ChromaDB",
+            "PyMuPDF", "Semantic Search", "Chunking Strategies"
+        ],
+
+        "📊 Machine Learning & Modeling": [
+            "Scikit-learn", "PyTorch", "CNN",
+            "LDA", "NMF", "TextRank", "Model Evaluation"
+        ],
+
+        "🎙️ Speech & Audio Processing": [
+            "Librosa", "pyttsx3", "Signal Processing Basics"
+        ],
+
+        "📈 Data Analysis & Visualization": [
+            "Pandas", "Matplotlib", "Seaborn", "Plotly",
+            "Data Storytelling"
+        ],
+
+        "🧠 Systems & Architecture Thinking": [
+            "End-to-End AI System Design",
+            "Trade-off Analysis",
+            "Scalability Awareness",
+            "Latency & Cost Optimization"
+        ],
+
+        "⚖️ Responsible & Ethical AI": [
+            "Bias Awareness",
+            "Privacy-Preserving AI",
+            "Offline / Local Inference",
+            "Explainability Concepts"
+        ]
     }
 
     for category, skills in skills_categories.items():
         st.markdown(f"<h4>{category}</h4>", unsafe_allow_html=True)
-        skills_html = "".join([f"<span class='skill-badge'>{skill}</span>" for skill in skills])
-        st.markdown(f"<div style='margin-bottom: 20px;'>{skills_html}</div>", unsafe_allow_html=True)
+        skills_html = "".join(
+            [f"<span class='skill-badge'>{skill}</span>" for skill in skills]
+        )
+        st.markdown(
+            f"<div style='margin-bottom: 22px;'>{skills_html}</div>",
+            unsafe_allow_html=True
+        )
 
     st.markdown("---")
 
-    col1, col2 = st.columns([1, 1])
+    col1, col2, col3 = st.columns(3)
+
     with col1:
         st.markdown("""
-        <div class="hover-lift" style="background: linear-gradient(135deg, #f093fb22 0%, #f5576c22 100%); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
-        <h3>💬 Soft Skills </h3>
-        • Communication<br>
-        • Teamwork & Collaboration<br>
-        • Adaptability<br>
-        • Problem Solving<br>
-        • Time Management
+        <div class="hover-lift"
+             style="background: linear-gradient(135deg, #f093fb22 0%, #f5576c22 100%);
+                    padding: 22px; border-radius: 16px;">
+        <h3>💬 Soft Skills</h3>
+        • Clear Communication<br>
+        • Team Collaboration<br>
+        • Adaptability & Learning Agility<br>
+        • Structured Problem Solving<br>
+        • Time & Priority Management
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
         st.markdown("""
-        <div class="hover-lift" style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
-        <h3>📊 Business Skills </h3>
+        <div class="hover-lift"
+             style="background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+                    padding: 22px; border-radius: 16px;">
+        <h3>📊 Business & Product Skills</h3>
+        • Product Thinking & User-Centric Design<br>
         • Business Analysis<br>
-        • Product Thinking<br>
         • Data-Driven Decision Making<br>
-        • Project Management Basics
+        • AI Use-Case Identification<br>
+        • Project Planning Basics
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown("""
+        <div class="hover-lift"
+             style="background: linear-gradient(135deg, #43e97b22 0%, #38f9d722 100%);
+                    padding: 22px; border-radius: 16px;">
+        <h3>🧭 Research & Meta Skills</h3>
+        • Problem Framing & Hypothesis Design<br>
+        • Literature Review & Analysis<br>
+        • Systems-Level Thinking<br>
+        • Self-Directed Learning<br>
+        • Ethical & Purpose-Driven Approach
         </div>
         """, unsafe_allow_html=True)
 
@@ -540,6 +618,27 @@ elif section == "🚀 Projects":
         st.markdown(
             "- [📁 Project Drive Folder](https://drive.google.com/drive/folders/12D_cz2Nk2ws-Amv9sx64UfX1kmo4JKjS)")
 
+elif section == "🧩 Learnings & Engineering Judgment":
+    st.markdown("<h2 class='section-title'>🧩 Learnings & Engineering Judgment</h2>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="hover-lift" style="padding: 28px; border-radius: 20px;
+         background: linear-gradient(135deg, #f093fb22, #f5576c22);">
+
+    <h3>🔄 What Didn’t Work — And Why It Matters</h3>
+
+    • RAG hallucinations → solved using chunk overlap & metadata filtering  
+    • Overfitting in deep models → addressed with augmentation & regularization  
+    • Latency bottlenecks → optimized via caching & modular pipelines  
+    • Feature overload → learned MVP discipline and user-first prioritization  
+
+    <p style="margin-top: 16px; font-style: italic;">
+    These failures improved my system design judgment more than successes.
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+
 elif section == "📜 Certifications & Workshops":
     st.markdown("<h2 class='section-title'>📜 Certifications & Workshops</h2>", unsafe_allow_html=True)
 
@@ -550,7 +649,7 @@ elif section == "📜 Certifications & Workshops":
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("assets/cert_ibm_datasci.png", caption="IBM Certificate Preview", use_container_width=True)
+    st.image("assets/cert_ibm_datasci.png", caption="IBM Certificate Preview", width="stretch")
 
     st.markdown("---")
     st.markdown("### 🛠 Workshops Attended")
@@ -568,7 +667,7 @@ elif section == "📜 Certifications & Workshops":
     for title, img, desc in workshops:
         with st.expander(title):
             st.markdown(f"<p>{desc}</p>", unsafe_allow_html=True)
-            st.image(img, use_container_width=True)
+            st.image(img, width="stretch")
 
 elif section == "🏅 Achievements":
     st.markdown("<h2 class='section-title'>🏅 Achievements</h2>", unsafe_allow_html=True)
@@ -581,7 +680,7 @@ elif section == "🏅 Achievements":
     """, unsafe_allow_html=True)
 
     with st.expander("📄 View Certificate"):
-        st.image("assets/SIH_2025_Certificate.png", use_container_width=True)
+        st.image("assets/SIH_2025_Certificate.png", width="stretch")
 
 elif section == "🎯 Interests":
     st.markdown("<h2 class='section-title'>🎯 Interests</h2>", unsafe_allow_html=True)
@@ -609,24 +708,24 @@ elif section == "🌄 Life Beyond Work":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.image("images/jatayu_earth_center.jpg", caption="JATAYU EARTH CENTER", use_container_width=True)
+        st.image("images/jatayu_earth_center.jpg", caption="JATAYU EARTH CENTER", width="stretch")
 
     with col2:
-        st.image("images/adiyogi_shiva_statue.jpg", caption="ADIYOGI SHIVA STATUE", use_container_width=True)
+        st.image("images/adiyogi_shiva_statue.jpg", caption="ADIYOGI SHIVA STATUE", width="stretch")
 
     with col3:
-        st.image("images/mayurasana.jpg", caption="PERFORMING MAYURASANA ON MOUNTAIN", use_container_width=True)
+        st.image("images/mayurasana.jpg", caption="PERFORMING MAYURASANA ON MOUNTAIN", width="stretch")
 
     st.markdown("---")
 
     col4, col5, col6 = st.columns(3)
 
     with col4:
-        st.image("images/cow_love.jpeg", caption="A quiet bond — peace shared between beings", use_container_width=True)
+        st.image("images/cow_love.jpeg", caption="A quiet bond — peace shared between beings", width="stretch")
     with col5:
-        st.image("images/bird.jpeg", use_container_width=True)
+        st.image("images/bird.jpeg", width="stretch")
     with col6:
-        st.image("images/bird_in_hand.jpeg", use_container_width=True)
+        st.image("images/bird_in_hand.jpeg", width="stretch")
 
     st.markdown("""
     <div style="text-align: center; font-style: italic; margin: 20px 0; color: #666;">
@@ -641,7 +740,7 @@ elif section == "🌄 Life Beyond Work":
         for j, col in enumerate(cols):
             img_num = i * 3 + j + 1
             with col:
-                st.image(f"images/{img_num}.jpeg", use_container_width=True)
+                st.image(f"images/{img_num}.jpeg", width="stretch")
 
 # Footer
 st.markdown("---")
