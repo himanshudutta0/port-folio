@@ -617,6 +617,47 @@ elif section == "🚀 Projects":
         st.markdown("**🔗 Links:**")
         st.markdown(
             "- [📁 Project Drive Folder](https://drive.google.com/drive/folders/12D_cz2Nk2ws-Amv9sx64UfX1kmo4JKjS)")
+    # Project 6
+    with st.expander("💧 Aqua Sense – AI-Driven Water Quality Intelligence", expanded=False):
+        st.markdown("""
+        <div class='project-card'>
+        <b>Aqua Sense</b> is an IoT-enabled, machine learning–driven water quality monitoring system developed as part of the 
+        <b>Smart India Hackathon (SIH)</b>. The system performs real-time classification of water usability for practical decision-making.
+    
+        <br><br>
+    
+        🔸 <b>Use Case</b>: Enables farmers, municipalities, and environmental agencies to instantly assess water usability for 
+        domestic consumption, irrigation, or treatment planning.<br><br>
+    
+        🔸 <b>Business Value</b>: Reduces dependency on laboratory testing, supports smart agriculture, and enables scalable, 
+        data-driven water resource management.<br><br>
+    
+        🔸 <b>Approach</b>:<br>
+        - Real-time acquisition of physicochemical parameters (pH, TDS, EC, turbidity)<br>
+        - Data preprocessing and normalization<br>
+        - Supervised multi-class machine learning classification<br>
+        - Decision logic mapping predictions to actionable outcomes<br><br>
+    
+        🔸 <b>Water Classification</b>:<br>
+        - <b>Highly Usable</b><br>
+        - <b>Usable / Consumable</b><br>
+        - <b>Irrigation</b><br>
+        - <b>Unusable</b><br><br>
+    
+        🔸 <b>Interface</b>: A real-time monitoring dashboard displaying sensor readings, predicted water class, and trends.
+    
+        <br><br>
+    
+        <b>Tech Stack</b>: Python, IoT Sensors, ESP32 / Arduino, Pandas, NumPy, Scikit-learn / Neural Networks, 
+        Jupyter Notebook, Streamlit, REST APIs, GitHub.
+        </div>
+        """, unsafe_allow_html=True)
+    
+        st.markdown("**🔗 Links:**")
+        st.markdown(
+            "<a href='https://github.com/Ozark2025/aqua_sense' target='_blank'>📁 GitHub Repository</a>",
+            unsafe_allow_html=True
+        )
 
 elif section == "🧩 Learnings & Engineering Judgment":
     st.markdown("<h2 class='section-title'>🧩 Learnings & Engineering Judgment</h2>", unsafe_allow_html=True)
