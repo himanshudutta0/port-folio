@@ -662,26 +662,60 @@ elif section == "🚀 Projects":
 elif section == "🧩 Learnings & Engineering Judgment":
     st.markdown("<h2 class='section-title'>🧩 Learnings & Engineering Judgment</h2>", unsafe_allow_html=True)
 
+    def learning_card(title, content):
+        st.markdown(f"""
+        <div class="hover-lift" style="
+            padding: 24px;
+            margin-bottom: 18px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #2b193b, #1a1026);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        ">
+            <h4 style="margin-bottom: 10px;">{title}</h4>
+            <p style="line-height: 1.6; opacity: 0.92;">{content}</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    learning_card(
+        "🧠 RAG Hallucinations",
+        "Early retrieval pipelines produced confident but incorrect outputs. "
+        "This was resolved using chunk overlap, metadata filtering, and tighter similarity thresholds, "
+        "reinforcing that retrieval quality matters more than model size."
+    )
+
+    learning_card(
+        "📉 Overfitting in Deep Models",
+        "High training accuracy failed to generalize in real-world scenarios. "
+        "The issue was addressed through data augmentation, dropout, and regularization, "
+        "shifting focus from metric optimization to robustness."
+    )
+
+    learning_card(
+        "⚡ Latency Bottlenecks",
+        "End-to-end inference delays exposed tightly coupled components. "
+        "Optimized via caching, asynchronous execution, and modular pipelines, "
+        "highlighting the need to design for scalability early."
+    )
+
+    learning_card(
+        "🧩 Feature Overload",
+        "Excessive early features reduced usability and slowed iteration. "
+        "Adopting MVP discipline improved clarity, development speed, and user-first prioritization."
+    )
+
+    learning_card(
+        "⚖️ Dataset Bias (SIH ML Solution)",
+        "During Smart India Hackathon, the ML model showed biased predictions due to an undistributed and skewed dataset. "
+        "This was corrected by enforcing balanced class distribution and controlled resampling, "
+        "significantly improving fairness and generalization. "
+        "The experience reinforced that data quality and distribution directly define model reliability."
+    )
+
     st.markdown("""
-    <div class="hover-lift" style="padding: 28px; border-radius: 20px;
-         background: linear-gradient(135deg, #f093fb22, #f5576c22);">
-
-    <h3>🔄 What Didn’t Work — And Why It Matters</h3>
-
-    • RAG hallucinations → Early retrieval pipelines produced confident but incorrect outputs; resolved using chunk overlap, metadata filtering, and tighter similarity thresholds, reinforcing that retrieval quality matters more than model size.  
-
-    • Overfitting in deep models → High training accuracy failed to generalize in real scenarios; addressed through data augmentation, dropout, and regularization, shifting focus from metrics to robustness.  
-
-    • Latency bottlenecks → End-to-end inference delays exposed tightly coupled components; optimized via caching, asynchronous execution, and modular pipelines, highlighting the need to design for scalability early.  
-
-    • Feature overload → Excessive early features reduced usability and slowed iteration; adopting MVP discipline improved clarity, speed, and user-first prioritization.  
-
-    • Dataset bias in SIH ML solution → During Smart India Hackathon, the model exhibited biased predictions due to an undistributed and skewed dataset; corrected by enforcing balanced class distribution and controlled resampling, significantly improving fairness and generalization. This reinforced that data quality and distribution directly define model reliability.  
-
-    <p style="margin-top: 16px; font-style: italic;">
-    These failures shaped stronger engineering judgment, teaching me that resilient systems are built through iteration, data discipline, and principled trade-offs — not just successful outcomes.
+    <p style="margin-top: 24px; font-style: italic; opacity: 0.85;">
+    These failures shaped stronger engineering judgment, teaching me that resilient systems are built through
+    iteration, data discipline, and principled trade-offs — not just successful outcomes.
     </p>
-    </div>
     """, unsafe_allow_html=True)
 
 
