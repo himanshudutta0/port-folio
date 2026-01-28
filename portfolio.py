@@ -668,13 +668,18 @@ elif section == "🧩 Learnings & Engineering Judgment":
 
     <h3>🔄 What Didn’t Work — And Why It Matters</h3>
 
-    • RAG hallucinations → solved using chunk overlap & metadata filtering  
-    • Overfitting in deep models → addressed with augmentation & regularization  
-    • Latency bottlenecks → optimized via caching & modular pipelines  
-    • Feature overload → learned MVP discipline and user-first prioritization  
+    • RAG hallucinations → Early retrieval pipelines produced confident but incorrect outputs; resolved using chunk overlap, metadata filtering, and tighter similarity thresholds, reinforcing that retrieval quality matters more than model size.  
+
+    • Overfitting in deep models → High training accuracy failed to generalize in real scenarios; addressed through data augmentation, dropout, and regularization, shifting focus from metrics to robustness.  
+
+    • Latency bottlenecks → End-to-end inference delays exposed tightly coupled components; optimized via caching, asynchronous execution, and modular pipelines, highlighting the need to design for scalability early.  
+
+    • Feature overload → Excessive early features reduced usability and slowed iteration; adopting MVP discipline improved clarity, speed, and user-first prioritization.  
+
+    • Dataset bias in SIH ML solution → During Smart India Hackathon, the model exhibited biased predictions due to an undistributed and skewed dataset; corrected by enforcing balanced class distribution and controlled resampling, significantly improving fairness and generalization. This reinforced that data quality and distribution directly define model reliability.  
 
     <p style="margin-top: 16px; font-style: italic;">
-    These failures improved my system design judgment more than successes.
+    These failures shaped stronger engineering judgment, teaching me that resilient systems are built through iteration, data discipline, and principled trade-offs — not just successful outcomes.
     </p>
     </div>
     """, unsafe_allow_html=True)
