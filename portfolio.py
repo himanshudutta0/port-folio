@@ -659,6 +659,46 @@ elif section == "🚀 Projects":
             unsafe_allow_html=True
         )
 
+# Project 7
+with st.expander("🇮🇳 UIDAI Aadhaar District Analytics Dashboard", expanded=False):
+    st.markdown("""
+    <div class='project-card'>
+    <b>UIDAI Aadhaar District Analytics Dashboard</b> is a comprehensive data analytics and visualization platform designed to explore Aadhaar enrolment, demographic updates, and biometric data across districts in India.
+
+    The system enables interactive, real-time analysis through geospatial mapping, temporal trends, and demographic segmentation.
+
+    <br><br>
+
+    🔸 <b>Key Features</b>:<br>
+    - Multi-dataset support (Enrolment, Demographic, Biometric)<br>
+    - Interactive India-wide district choropleth maps (GeoJSON-based)<br>
+    - Age group filtering and comparison (0–5, 5–17, 18+)<br>
+    - Temporal trend analysis with date range selection<br>
+    - Top-performing districts ranking<br>
+    - Searchable and sortable data explorer<br>
+    - CSV export for offline analysis<br><br>
+
+    🔸 <b>Business Value</b>:<br>
+    - Enables government and policymakers to monitor Aadhaar penetration<br>
+    - Identifies regional disparities for targeted interventions<br>
+    - Supports data-driven governance and planning<br>
+    - Useful for researchers and analysts working on large-scale public datasets<br><br>
+
+    🔸 <b>Technical Highlights</b>:<br>
+    - Data normalization and aggregation at district level<br>
+    - 95th percentile clipping for improved visualization clarity<br>
+    - Efficient caching using Streamlit for performance optimization<br>
+    - Modular and scalable architecture<br><br>
+
+    <b>Tech Stack</b>: Python, Streamlit, Pandas, Plotly, GeoJSON, Custom CSS
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("**🔗 Links:**")
+    st.markdown(
+        "- 📁 [Project Files](https://drive.google.com/drive/folders/1aSj-ATQ66F3FXfV164eRJuXm9oT8j1NP)\n"
+        "- 🎥 [Watch Demo](https://youtu.be/iC6qP1_4UK8)"
+    )
 elif section == "🧩 Learnings & Engineering Judgment":
     st.markdown("<h2 class='section-title'>🧩 Learnings & Engineering Judgment</h2>", unsafe_allow_html=True)
 
